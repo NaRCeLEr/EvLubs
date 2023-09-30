@@ -14,10 +14,8 @@ class Index(ListView):
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
-		context['TeamEvents'] = TeamEvent.objects.filter(city = self.request.user.profile.city)
 		context['profile'] = self.request.user.profile
 		context['Categorys'] = Category.objects.all()
-		context['PersonEvents'] = PersonEvent.objects.filter(city=self.request.user.profile.city)
 		personEvents = PersonEvent.objects.filter(city=self.request.user.profile.city)
 		teamEvents = TeamEvent.objects.filter(city=self.request.user.profile.city)
 		context['Events'] = QuerySetSequence(personEvents, teamEvents)
@@ -48,8 +46,8 @@ class CategoryEvents(ListView):
 def cats(request):
 	if request.method == "POST":
 		category = Category.objects.get(title=request.POST.get('elastics'))
-		personEvents = PersonEvent.objects.filter(cat=category)
-		teamEvents = TeamEvent.objects.filter(cat=category)
+		personEvents = PersonEvent.objects.filter(cat=category, city=request.user.profile.city)
+		teamEvents = TeamEvent.objects.filter(cat=category, city=request.user.profile.city)
 		context = {
 			'profile': request.user.profile
 		}
@@ -153,7 +151,7 @@ def savePersonEvent(request):
 		title = request.POST.get('title')
 		description = request.POST.get('description')
 		date = request.POST.get('date')
-		city = request.POST.get('city')
+		city = request.POST.get('city')[:-1]
 		address = request.POST.get('address')
 		cat = Category.objects.get(title=request.POST.get('elastics'))
 
@@ -182,7 +180,7 @@ def saveTeamEvent(request):
 		title = request.POST.get('title')
 		description = request.POST.get('description')
 		date = request.POST.get('date')
-		city = request.POST.get('city')
+		city = request.POST.get('city')[:-1]
 		address = request.POST.get('address')
 		cat = Category.objects.get(title=request.POST.get('elastics'))
 		creater = Team.objects.get(admin=request.user.profile)

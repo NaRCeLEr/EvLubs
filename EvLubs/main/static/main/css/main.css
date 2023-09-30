@@ -16,6 +16,13 @@ body {
     display: none !important;
 }
 
+input {
+    border: none;
+    border-radius: 25px;
+
+    max-width: 300px;
+}
+
 /* HEAD */
 
 .head {
@@ -320,5 +327,42 @@ body {
     width: 80%;
 }
 
-/* SEARCHES */
+/* INPUTS */
 
+
+
+#id_title {
+    border: none;
+    border-radius: 30px;
+    height: 25px;
+    width: 250px;
+    text-align: center;
+}
+
+#id_description {
+    border: none;
+    border-radius: 20px;
+}
+
+#id_logo{
+    font-size: 7px;
+    background-color: white;
+    border-radius: 40px;
+    box-shadow: 5px 5px 10px black;
+    width: 170px;
+    outline: none;
+}
+
+::-webkit-file-upload-button {
+    color: white;
+    background-color: #206a5d;
+    padding: 20px;
+    border: none;
+    border-radius: 40px;
+    box-shadow: 1px 0 1px 1px #6b4559;
+    outline: none;
+}
+
+::-webkit-file-upload-button:hover {
+    background-color: #438a5e;
+}
