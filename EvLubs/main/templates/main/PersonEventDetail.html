@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{Event.date}}
+
+    <form action="{% url 'addPersonEvetUser' %}" method="POST" id="ad">
+        {% csrf_token %}
+        <input type="text" value="{{Event.pk}}" name="pk" id="pk">
+        <button type="button" id="add">Send</button>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="{% static 'main/js/ajax_add.js' %}"></script>
+</body>
+</html>

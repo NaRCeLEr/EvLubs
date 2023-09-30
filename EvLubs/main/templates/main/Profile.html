@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="Content">
+    <div class="prfileD-card">
+        <div class="profileD-logo">
+            {% if profile.logo %}
+            <img src="{{profile.logo.url}}" alt="">
+            {% endif %}
+        </div>
+        <div class="username">
+            <h1>{{profile.user.username}}</h1>
+        </div>
+    
+        <div class="other">
+            <div class="description">
+                {{profile.description}}
+            </div>
+            <div class="city">
+                {{profile.city}}
+            </div>
+    
+            <div class="status">
+                {{profile.status}}
+            </div>
+            {% if profile.user == user %}
+            <div class="Edit">
+                <a href="{% url 'profileEdit' %}">Edit</a>
+            </div>
+            {% endif %}
+        </div>
+
+        
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="Content">
+    {% for event in Events %}
+        <div class="Event-item">
+            <div class="Event-item_header">
+                <div class="profile-inf">
+                    <a href="{{event.creater.get_absolute_url}}">{{event.creater}}</a>
+                    {% if event.creater.logo %}
+                    <img src="{{event.creater.logo.url}}" alt="">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="Event-item_content">
+                <div class="item-content">
+                    <div class="item-content_inf">
+                        <h2>
+                            {{event.title}}
+                        </h2>
+                        <h4>
+                            {{event.date}}
+                        </h4>
+                        <h5>{{event.address}}</h5>
+                    </div>
+                    <div class="item-content_img">
+                        {% if event.logo %}
+                        <img src="{{event.logo.url}}" alt="">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="item-text">
+                    <p>{{event.description}}</p>
+                </div>  
+            </div>
+        </div>
+            
+        {% endfor %}
+</div>
+{% endblock %}

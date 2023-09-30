@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{Event.date}}
+    <form method="POST" action="{% url 'addTeamEventAjax' %}" id="ad">
+        {% csrf_token %}
+        <input type="text" value="{{Event.pk}}" id="pk" name="pk"> 
+        <button type="button">submit</button>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="{% static 'main/js/ajax_add.js' %}"></script>
+</body>
+</html>

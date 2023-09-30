@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="head">
+        <div class="head-content">
+            <div class="logo">
+                <a href="{% url 'home' %}"><img src="{% static 'main/img/EvLubsLogo.png' %}" alt=""></a>
+            </div>
+            <div class="head-profile">
+                <div class="head-profile_logo">
+                    {% if profile.logo %}
+                        <img src="{{profile.logo.url}}" alt="">
+                    {% endif %}
+                </div>
+                <div class="head-profile_name">
+                    <a href="{{profile.get_absolute_url}}">{{profile.user.username}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper">
+
+        <div class="Events-various">
+            <a href="{% url 'personEvents' %}">PersonEvents</a>
+            <a href="{% url 'teamEvents' %}">TeamEvents</a>
+            <a href="{% url 'home' %}">All</a>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+
+
+        <div class="team-block">
+            <div class="Team">
+                {% if profile.Team %}
+                <a href="{{profile.Team.get_absolute_url}}" class="myTeam">My Team</a>
+                {% else %}
+                <a href="{% url 'CreateTeam' %}" class="createBtn">CreateTeam</a>
+                {% endif %}
+            </div>
+            <div class="create-block">
+                <a href="{% url 'CreatePersonEvent' %}">-Create Person Event</a>
+                {% if profile.Team %}
+                {% if profile.Team.admin == profile %}
+                <a href="{% url 'CreateTeamEvent' %}">-Create Team Event</a>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+
+        
+    </div>
+</body>
+</html>

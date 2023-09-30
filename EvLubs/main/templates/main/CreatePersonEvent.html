@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+</head>
+<body>
+    <form action="{% url 'savePersonEvent' %}" method="post" id="p">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="text" id="elastic" name="elastics" oninput="searc(this)">
+        <div class="searches">
+            <ul class="elastic">
+                {% for cat in cats %}
+                <li onclick="choose(this)">{{cat}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <button id="create" type="submit">Create</button>
+    </form>
+    <script src="{% static 'main/js/search.js' %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
+
+        <script>
+            var is_selected = false;
+            document.getElementById('create').style.display = 'none';
+            
+            
+            var token = "138d6a1d498d4b8de187369efd814910b37ee0e9";
+            var type  = "ADDRESS";
+
+            var $city   = $("#id_city");
+            $city.suggestions({
+                token: token,
+                type: type,
+                hint: false,
+                bounds: "city-settlement",
+                onSelect: function(suggestion) {
+                    is_selected = true;
+                    document.getElementById('create').style.display = 'block';
+                }
+            });
+            
+            function choose(a) {
+                document.getElementById('elastic').value = a.innerText;
+            }
+        </script>
+        
+</body>
+</html>

@@ -1,0 +1,324 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFBA9D;
+}
+
+.wrapper {
+    width: 85%;
+    margin: auto;
+    margin-top: 65px;
+
+    display: flex;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* HEAD */
+
+.head {
+    display: flex;
+    justify-content: center;
+
+    max-height: 80px;
+
+    background-color: #A1A1A1;
+}
+
+.head-content {
+    width: 85%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo img {
+    max-width: 60px;
+    min-height: 60px;
+}
+
+.logo {
+    padding: 0.7%;
+}
+
+.head-profile {
+    display: flex;
+    
+    padding: 0.75%;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.head-profile_logo {
+    margin-right: 25px;
+}
+
+.head-profile_logo img {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50px;
+}
+
+.head-profile_name {
+    padding-top: 10%;
+}
+
+.head-profile a {
+    text-decoration: none;
+    color: black;
+}
+
+
+/* EVENTS_VARIOUS */
+
+.Events-various {
+    width: 10%;
+    max-height: 80px;
+
+    background-color: #B5B1B1;
+
+    border: none;
+    border-radius: 30px;
+    
+    padding-top: 1%;
+}
+
+.Events-various a {
+    text-decoration: none;
+    color: #fff;
+
+    padding-left: 15%;
+    font-weight: bold;
+}
+
+/* CONTENT */
+
+.Content {
+    width: 60%;
+    margin-left: 50px;
+}
+
+/* EVENTS */
+
+.Event-item {
+    margin: auto;
+    width: 750px;
+    min-height: 300px;
+
+    margin-top: 50px;
+
+    background-color: #B6B6B6;
+    border-radius: 33px;
+}
+
+.Event-item_header {
+    height: 70px;
+    display: flex;
+    justify-content: end;
+}
+
+.profile-inf {
+    display: flex;
+}
+
+.profile-inf img  {
+    height: 50px;
+    width: 50px;
+
+    border-radius: 50px;
+
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.profile-inf a {
+    margin-right: 15px;
+    margin-top: 25px;
+
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.Event-item_content {
+}
+
+.item-content {
+    display: flex;
+}
+
+.item-content_inf {
+    width: 40%;
+
+    padding-left: 5%;
+}
+
+.item-content_inf h2 {
+    color: #fff;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.item-content_inf h4 {
+    padding-left: 10%;
+    color: #444444;
+}
+
+.item-content_inf h5 {
+    color: #515151;
+}
+
+.item-content_img {
+    margin-left: 20px;
+    width: 55%;
+    display: flex;
+    justify-content: start;
+}
+
+.item-content_img img {
+    width: 320px;
+    height: 180px;
+
+    border-radius: 20px;
+}
+
+.item-text {
+    margin-top: 40px;
+
+    width: 80%;
+    padding-left: 10%;
+
+    text-align: center;
+
+    padding-bottom: 30px;
+}
+
+.item-text p {
+    text-align: center;
+}
+
+
+
+/* TEAM BLOCK */
+
+.team-block {
+    margin-left: 40px;
+
+    width: 15%;
+
+    border-radius: 20px;
+
+    background-color: #B5B1B1;
+    text-align: center;
+
+    max-height: 70px;
+    position: relative;
+}
+
+.Team {
+    padding-top: 15%;
+}
+
+.Team a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+.create-block {
+    margin-top: 80px;
+    padding: 15%;
+
+
+    background-color: #B5B1B1;
+    border-radius: 20px;
+}
+
+.create-block a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+}
+
+
+/* PROFILEDETAIL */
+
+.prfileD-card {
+    width: 400px;
+    margin: auto;
+
+    background-color: #B5B1B1;
+    border-radius: 30px;
+}
+
+.profileD-logo {
+    padding-top: 20px;
+    margin: auto;
+
+    width: 100px;
+    height: 100px;
+}
+
+.profileD-logo img {
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50px;
+}
+
+.username {
+    text-align: center;
+}
+
+.other {
+    margin-top: 40px;
+    padding-bottom: 20px;
+    
+    text-align: center;
+}
+
+.description {
+    margin-top: 20px;
+
+}
+
+.city {
+    margin-top: 15px;
+}
+
+.status {
+    margin-top: 10px;
+}
+
+.Edit {
+    height: 40px;
+    width: 75px;
+    background-color: #844a4a;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    color: #B6B6B6;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.Edit a {
+    text-decoration: none;
+    color: #B6B6B6;
+}
+
+/* SEARCH */
+
+.search {
+    width: 80%;
+}
+
+/* SEARCHES */
+
