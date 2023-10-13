@@ -5,7 +5,10 @@
     <div class="Content">
         <form action="{% url 'cats' %}" method="post">
             {% csrf_token %}
-            <input type="text" id="elastic" name="elastics" oninput="searc(this)">
+            <div class="searchcat">
+                <input class="elastic" type="text" id="elastic" name="elastics" oninput="searc(this)" placeholder="Category">
+                <button type="submit">Find</button>
+            </div>
             <div class="searches">
                 <ul class="elastic">
                     {% for cat in cats %}
@@ -13,7 +16,7 @@
                     {% endfor %}
                 </ul>
             </div>
-            <button type="submit">Find</button>
+            
         </form>
         <div class="Events">
             {% for event in Events %}
@@ -58,7 +61,6 @@
 
         <script>
             var is_selected = false;
-            document.getElementById('find').style.display = 'none';
             
             
             var token = "138d6a1d498d4b8de187369efd814910b37ee0e9";

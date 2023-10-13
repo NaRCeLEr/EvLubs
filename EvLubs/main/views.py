@@ -6,6 +6,7 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib.auth import logout, login
 from queryset_sequence import QuerySetSequence
+from django.views.decorators.csrf import csrf_exempt
 
 
 class Index(ListView):
@@ -18,8 +19,9 @@ class Index(ListView):
 		context['Categorys'] = Category.objects.all()
 		personEvents = PersonEvent.objects.filter(city=self.request.user.profile.city)
 		teamEvents = TeamEvent.objects.filter(city=self.request.user.profile.city)
-		context['Events'] = QuerySetSequence(personEvents, teamEvents)
+		context['Events'] = QuerySetSequence(personEvents, teamEvents).order_by('-date')
 		context['cats'] = Category.objects.all()
+		context['requests'] = TeamRequest.objects.filter(to_profile=self.request.user.profile)
 		return context
 
 	# def post(self, request, **kwargs):
@@ -70,6 +72,29 @@ def cityEvents(request):
 
 	return render (request, 'main/CityEvents.html', context)
 
+
+@csrf_exempt
+def agree(request):
+    if request.method == 'POST':
+        res = request.POST.get('res')
+        if res == 'ok':
+            pk = request.POST.get('pk')
+            req = TeamRequest.objects.get(pk=pk)
+            req.is_checked = True
+            user = req.from_profile
+            team = req.to_profile.Team
+            user.Team = team
+            user.save()
+            req.save()
+        else:
+            pk = request.POST.get('pk')
+            req = TeamRequest.objects.get(pk=pk)
+            req.is_checked = True
+            req.save()
+
+    
+    return redirect('home')
+
 # 												Register/Login/LogOut
 
 
@@ -95,7 +120,7 @@ class LoginUser(LoginView):
 
 def logoutuser(request):
 	logout(request)
-	return redirect('login')
+	return redirect('Login')
 
 
 # 												PersonEvent
@@ -244,6 +269,22 @@ class TeamDetail(DetailView):
 	model = Team
 	context_object_name = 'Team'
 	template_name = 'main/TeamDetail.html'
+
+@csrf_exempt
+def findTeam(request):
+	context = {
+		'Teams': Team.objects.all(),
+		'profile': request.user.profile,
+	}
+	if request.method == 'POST':
+		team = Team.objects.get(title=request.POST.get('team'))
+		user = request.user
+		req = TeamRequest(from_profile=user.profile, to_profile=team.admin)
+		req.save()
+
+	return render(request, 'main/findTeam.html', context)
+
+
 
 
 #												 Club

@@ -1,6 +1,4 @@
-document.getElementById('elastic').onchange = function() {
-    
-}
+
 
 function searc(a) {
     let value = a.value.trim().toLowerCase();

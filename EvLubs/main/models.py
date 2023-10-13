@@ -27,6 +27,7 @@ class Team(models.Model):
     title = models.CharField(max_length=255)
     logo = models.ImageField(blank=True, null=True)
     description = models.TextField(null=True, blank=True)
+    cat = models.ForeignKey('Category', on_delete=models.DO_NOTHING)
 
     admin = models.ForeignKey(Profile, on_delete=models.DO_NOTHING)
 
@@ -94,3 +95,9 @@ class TeamEvent(models.Model):
 
     def get_absolute_url(self):
         return reverse('TeamEventDetail', kwargs={'pk': self.pk})
+
+class TeamRequest(models.Model):
+    from_profile = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, related_name='from_profile')
+    to_profile = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, related_name='to_profile')
+    is_checked = models.BooleanField(default=False)
+        

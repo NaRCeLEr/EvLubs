@@ -11,6 +11,7 @@ urlpatterns = [
 
 	path('register', RegisterUser.as_view(), name='Register'),
 	path('login', LoginUser.as_view(), name='Login'),
+	path('logout', logoutuser, name='logout'),
 
 	path('createPersonEvent', CreatePersonEvent.as_view(), name='CreatePersonEvent'),
 	path('createTeamEvent', CreateTeamEvent.as_view(), name='CreateTeamEvent'),
@@ -28,7 +29,10 @@ urlpatterns = [
 	path('saveTeamEvent', saveTeamEvent, name='saveTeamEvent'),
 
 	path('profileEdit', profileEdit, name='profileEdit'),
+	path('findTeam', findTeam, name='findTeam'),
 
 	path('personEvents', personEvents, name='personEvents'),
 	path('teamEvents', teamEvents, name='teamEvents'),
+ 
+	path('agree', agree, name='agree'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="Content">
+    <input type="text" name="cat" id="cat" oninput="searc(this)">
+    <ul class="elastic">
+    {% for i in Teams %}
+    <li class="hidden teams" value={{i}} onclick="choose('{{i}}')">{{i}}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+<script src="{% static 'main/js/search.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+    function choose(el) {
+        
+        $.ajax({
+            url: "{% url 'findTeam' %}",
+            method: 'POST',
+            data: {'team': el},
+            success: () => {console.log('ok')}
+        });
+    }
+</script>
+{% endblock %}

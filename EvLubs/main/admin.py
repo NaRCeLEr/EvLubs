@@ -7,4 +7,5 @@ admin.site.register(TeamEvent)
 admin.site.register(Category)
 admin.site.register(Team)
 admin.site.register(Club)
+admin.site.register(TeamRequest)
 

@@ -11,9 +11,31 @@
     <div class="head">
         <div class="head-content">
             <div class="logo">
-                <a href="{% url 'home' %}"><img src="{% static 'main/img/EvLubsLogo.png' %}" alt=""></a>
+                <a href="{% url 'home' %}"><img src="{% static 'main/img/EvLubsLogo.png' %}" alt=""><h1>EvLubs</h1></a>
             </div>
+            
             <div class="head-profile">
+                <!-- <div class="requests">
+                    {% for req in requests %}
+                    {% if not req.is_checked %}
+                    <input type="text" value="{{req.pk}}" onclick="agree(this)">
+                    {% endif %}
+                    {% endfor %}
+                </div> -->
+                <div class="requests">
+                    <h3 name="open" onclick="openBlock()">Open</h3>
+                    <div class="requests_block hidden" id="requests">
+                        <h2>REQUESTS</h2>
+                        {% for i in requests %}
+                        <div class="request_item">
+                            <p>{{i.from_profile}} want to enjoy in your team</p>
+                            <button onclick="agree(pk='{{i.pk}}', res='ok')" class="agreeBtn">Ok</button>
+                            <button onclick="agree(pk='{{i.pk}}', res='no')" class="disAgreeBtn">NO</button>
+                        </div>
+                        {% endfor %}
+                        <h3 onclick="closeBlock()">close</h3>
+                    </div>
+                </div>
                 <div class="head-profile_logo">
                     {% if profile.logo %}
                         <img src="{{profile.logo.url}}" alt="">
@@ -57,5 +79,42 @@
 
         
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        var requests_block = document.querySelector('#requests')
+        function openBlock() {
+            requests_block.classList.remove('hidden');
+        }
+        function closeBlock() {
+            requests_block.classList.add('hidden');
+        }
+
+        function agree(pk, res) {
+            console.log(pk)
+            console.log(res)
+            if (res == 'ok') {
+                $.ajax({
+                    url: "{% url 'agree' %}",
+                    method: 'POST',
+                    data: {
+                        'pk': pk,
+                        'res': res
+                    },
+                    success: () => {console.log('ok')}
+                });
+            }else {
+                $.ajax({
+                    url: "{% url 'agree' %}",
+                    method: 'POST',
+                    data: {
+                        'pk': pk,
+                        'res': res
+                    },
+                    success: () => {console.log('ok')}
+                });
+            }
+            
+        }
+    </script>
 </body>
 </html>
